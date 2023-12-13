@@ -3,10 +3,8 @@ def get_initial_state(config):
   for row_config in config:
     row_state = []
     for cell_config in list(row_config):
-      if(cell_config == '*'):
-        row_state.append(True)
-      else:
-        row_state.append(False)
+      cell_state = cell_config == '*'
+      row_state.append(cell_state)
     out.append(row_state)
   return out
 
