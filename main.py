@@ -4,7 +4,7 @@ from state import get_initial_grid, compute_new_grid
 pygame.init()
 screen = pygame.display.set_mode((500, 500))
 clock = pygame.time.Clock()
-running = True
+is_running = True
 
 with open('config.txt', 'r') as f:
   initial_state = get_initial_grid(f.readlines())
@@ -12,6 +12,11 @@ with open('config.txt', 'r') as f:
 state = {
   'grid': initial_state
 }
+
+def draw_grid(grid):
+  for i, row in enumerate(grid):
+    for j, cell in enumerate(row):
+      draw_cell(cell, i, j)
 
 def draw_cell(cell, i, j):
   leftTop = (j * 10, i * 10)
@@ -22,19 +27,14 @@ def draw_cell(cell, i, j):
   else:
     pygame.draw.rect(screen, "blue3", rect)
 
-def draw_grid(grid):
-  for i, row in enumerate(grid):
-    for j, cell in enumerate(row):
-      draw_cell(cell, i, j)
-
-while running:
+while is_running:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
-      running = False
+      is_running = False
 
   state['grid'] = compute_new_grid(state['grid'])
   draw_grid(state['grid'])
-
+  
   pygame.display.flip()
   clock.tick(10)
 
