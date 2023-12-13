@@ -13,37 +13,27 @@ state = {
   'grid': initial_state
 }
 
-def bound_safe(num, bounds):
-  if(num < bounds[0]):
-    return bounds[0]
-  elif(num > bounds[1]):
-    return bounds[1]
-  else:
-    return num
-
-def cell_rect(i, j):
-  _i = bound_safe(i, (0, 49))
-  _j = bound_safe(j, (0, 49))
-  leftTop = (_j * 10, _i * 10)
+def draw_cell(cell, i, j):
+  leftTop = (j * 10, i * 10)
   widthHeight = (10, 10)
-  return pygame.Rect(leftTop, widthHeight)
+  rect = pygame.Rect(leftTop, widthHeight)
+  if(cell):
+    pygame.draw.rect(screen, "green3", rect)
+  else:
+    pygame.draw.rect(screen, "blue3", rect)
 
-def draw(gridState):
-  for i, row in enumerate(gridState):
+def draw_grid(grid):
+  for i, row in enumerate(grid):
     for j, cell in enumerate(row):
-      rect = cell_rect(i, j)
-      if(cell):
-        pygame.draw.rect(screen, "white", rect)
-      else:
-        pygame.draw.rect(screen, "black", rect)
+      draw_cell(cell, i, j)
 
 while running:
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
-        running = False
+      running = False
 
   state['grid'] = compute_new_grid(state['grid'])
-  draw(state['grid'])
+  draw_grid(state['grid'])
 
   pygame.display.flip()
   clock.tick(10)
