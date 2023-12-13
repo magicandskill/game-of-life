@@ -1,13 +1,13 @@
 import pygame
 from state import get_initial_state
 
+with open('config.txt', 'r') as f:
+  state = get_initial_state(f.readlines())
+  
 pygame.init()
 screen = pygame.display.set_mode((500, 500))
 is_running = True
 clock = pygame.time.Clock()
-
-with open('config.txt', 'r') as f:
-  state = get_initial_state(f.readlines())
 
 while is_running:
   for event in pygame.event.get():
