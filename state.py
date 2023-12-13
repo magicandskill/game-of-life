@@ -1,4 +1,4 @@
-def get_initial_grid(config):
+def get_initial_state(config):
   grid = []
   for i in range(0, len(config)):
     row = []
@@ -8,7 +8,7 @@ def get_initial_grid(config):
     grid.append(row)
   return grid
 
-def compute_new_grid(curr_grid):
+def compute_new_state(curr_grid):
   grid = []
   for i in range(0, len(curr_grid)):
     row = []
