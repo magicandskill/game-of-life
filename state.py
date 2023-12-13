@@ -1,13 +1,14 @@
 def get_initial_state(config):
-  def stateRow(str):
-    out = []
-    for cell in list(str):
-      if(cell == '*'):
-        out.append(True)
+  out = []
+  for row_config in config:
+    row_state = []
+    for cell_config in list(row_config):
+      if(cell_config == '*'):
+        row_state.append(True)
       else:
-        out.append(False)
-    return out
-  return [stateRow(configRow) for configRow in config]
+        row_state.append(False)
+    out.append(row_state)
+  return out
 
 def compute_new_state(grid_state):
   out = []
