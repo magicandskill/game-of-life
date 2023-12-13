@@ -19,12 +19,6 @@ def compute_new_state(curr_grid):
     new_grid.append(new_row)
   return new_grid
 
-def is_in_bound(index):
-  return index >= 0 and index <= 49
-
-def is_live(grid, i, j):
-  return is_in_bound(i) and is_in_bound(j) and grid[i][j]
-
 def get_neighbor_count(grid, i, j):
   return [
     is_live(grid, i-1, j),
@@ -36,3 +30,9 @@ def get_neighbor_count(grid, i, j):
     is_live(grid, i+1, j-1),
     is_live(grid, i+1, j+1)
   ].count(True)
+
+def is_live(grid, i, j):
+  return is_in_bound(i) and is_in_bound(j) and grid[i][j]
+
+def is_in_bound(index):
+  return index >= 0 and index <= 49
