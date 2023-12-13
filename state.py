@@ -10,16 +10,16 @@ def get_initial_state(config):
     out.append(row_state)
   return out
 
-def compute_new_state(grid_state):
-  out = []
-  for i, row in enumerate(grid_state):
-    row_state = []
-    for j, cell in enumerate(row):
-      count = get_neighbor_count(grid_state, i, j)
-      cell_state = count == 3 or count == 2 and cell
-      row_state.append(cell_state)
-    out.append(row_state)
-  return out
+def compute_new_state(curr_grid):
+  new_grid = []
+  for i, curr_row in enumerate(curr_grid):
+    new_row = []
+    for j, curr_cell in enumerate(curr_row):
+      count = get_neighbor_count(curr_grid, i, j)
+      new_cell = count == 3 or count == 2 and curr_cell
+      new_row.append(new_cell)
+    new_grid.append(new_row)
+  return new_grid
 
 def is_in_bound(i):
   return i >= 0 and i <= 49
