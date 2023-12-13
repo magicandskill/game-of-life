@@ -1,5 +1,5 @@
 import pygame
-from state import get_initial_state, compute_new_state
+from state import get_initial_grid, compute_new_grid
 
 pygame.init()
 screen = pygame.display.set_mode((500, 500))
@@ -7,7 +7,7 @@ clock = pygame.time.Clock()
 running = True
 
 with open('config.txt', 'r') as f:
-  initial_state = get_initial_state(f.readlines())
+  initial_state = get_initial_grid(f.readlines())
 
 state = {
   'grid': initial_state
@@ -42,7 +42,7 @@ while running:
     if event.type == pygame.QUIT:
         running = False
 
-  state['grid'] = compute_new_state(state['grid'])
+  state['grid'] = compute_new_grid(state['grid'])
   draw(state['grid'])
 
   pygame.display.flip()

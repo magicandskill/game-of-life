@@ -1,23 +1,23 @@
-def get_initial_state(config):
-  out = []
-  for row_config in config:
-    row_state = []
-    for cell_config in list(row_config):
-      cell_state = cell_config == '*'
-      row_state.append(cell_state)
-    out.append(row_state)
-  return out
+def get_initial_grid(config):
+  grid = []
+  for i in range(0, len(config)):
+    row = []
+    for j in range(0, len(config[i])):
+      cell = config[i][j] == '*'
+      row.append(cell)
+    grid.append(row)
+  return grid
 
-def compute_new_state(curr_grid):
-  new_grid = []
-  for i, curr_row in enumerate(curr_grid):
-    new_row = []
-    for j, curr_cell in enumerate(curr_row):
+def compute_new_grid(curr_grid):
+  grid = []
+  for i in range(0, len(curr_grid)):
+    row = []
+    for j in range(0, len(curr_grid[i])):
       count = get_neighbor_count(curr_grid, i, j)
-      new_cell = count == 3 or count == 2 and curr_cell
-      new_row.append(new_cell)
-    new_grid.append(new_row)
-  return new_grid
+      cell = count == 3 or count == 2 and curr_grid[i][j]
+      row.append(cell)
+    grid.append(row)
+  return grid
 
 def get_neighbor_count(grid, i, j):
   return [
