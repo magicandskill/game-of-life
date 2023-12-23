@@ -8,6 +8,11 @@ def draw_cell(cell, x, y):
   else:
     pygame.draw.rect(screen, 'blue3', rect)
 
+def draw_grid(grid):
+  for i, row in enumerate(grid):
+    for j, cell in enumerate(row):
+      draw_cell(cell, j, i)
+
 with open('config.txt', 'r') as f:
   config = f.readlines()
   grid_state = get_initial_state(config)
@@ -22,8 +27,7 @@ while is_running:
     if event.type == pygame.QUIT:
       is_running = False
 
-  draw_cell(True, 0, 0)
-  draw_cell(False, 1, 0)
+  draw_grid(grid_state)
   pygame.display.flip()
   clock.tick(10)
 
