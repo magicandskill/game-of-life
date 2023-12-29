@@ -1,5 +1,5 @@
 import pygame
-from state import get_initial_state
+from state import get_initial_state, compute_new_state
 
 def draw_cell(cell, x, y):
   rect = pygame.Rect((x * 10, y * 10, 10, 10))
@@ -27,6 +27,7 @@ while is_running:
     if event.type == pygame.QUIT:
       is_running = False
 
+  grid_state = compute_new_state(grid_state)
   draw_grid(grid_state)
   pygame.display.flip()
   clock.tick(10)
